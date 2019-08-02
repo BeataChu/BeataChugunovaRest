@@ -13,8 +13,12 @@ public class RequestOptions {
         EN("en");
         String languageCode;
 
-        private Languages(String lang) {
+        Languages(String lang) {
             this.languageCode = lang;
+        }
+
+        public String toString(){
+            return languageCode;
         }
     }
 
@@ -25,7 +29,7 @@ public class RequestOptions {
         IGNORE_CAPITALIZATION(512);
         int optionCode;
 
-        private Options(int optionCode) {
+        Options(int optionCode) {
             this.optionCode = optionCode;
         }
 

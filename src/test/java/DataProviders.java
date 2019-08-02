@@ -34,28 +34,49 @@ public class DataProviders {
                 {"www.ниправильный.url ашип234ка не нАЙДЕНА", Languages.RU, Options.IGNORE_URLS, Options.IGNORE_DIGITS,
                         Options.IGNORE_CAPITALIZATION},
                 {"bOOK", Languages.EN, Options.IGNORE_CAPITALIZATION},
-                {"or1der lIST", Languages.RU, Options.IGNORE_DIGITS, Options.IGNORE_CAPITALIZATION},
+                {"or1der lIST", Languages.EN, Options.IGNORE_DIGITS, Options.IGNORE_CAPITALIZATION},
                 {"www.randam.url", Languages.EN, Options.IGNORE_URLS},
                 {"www.randam.url ашип234ка не нАЙДЕНА", Languages.RU, Options.IGNORE_URLS, Options.IGNORE_DIGITS,
-                        Options.IGNORE_CAPITALIZATION}};
+                        Options.IGNORE_CAPITALIZATION}
+        };
     }
 
+    @DataProvider(name = "incorrectTextIgnored")
+    public static Object[][] incorrectTextIgnored() {
+        return new Object[][]{
+                {"усл123овие", Languages.RU, Options.IGNORE_DIGITS},
+                {"C:/MyDocuments/пробовать.docx", Languages.RU, Options.IGNORE_URLS},
+                {"www.птица.ру", Languages.RU, Options.IGNORE_URLS},
+                {"дРАГОЦЕНный", Languages.RU, Options.IGNORE_CAPITALIZATION},
+                {"fab7ric", Languages.EN, Options.IGNORE_DIGITS},
+                {"embark.docx", Languages.EN, Options.IGNORE_URLS},
+                {"www.superficial.gov", Languages.EN, Options.IGNORE_URLS},
+                {"fASCINATE", Languages.EN, Options.IGNORE_CAPITALIZATION}
+        };
+    }
 
     @DataProvider(name = "incorrectTextWithOptions")
     public static Object[][] incorrectTextWithOptions() {
-        return new Object[][]{{"кНИЛА", "книга", ResponseErrors.UNKNOWN_WORD, Languages.RU, Options.IGNORE_CAPITALIZATION},
+        return new Object[][]{
+                {"кНИЛА", "книга", ResponseErrors.UNKNOWN_WORD, Languages.RU, Options.IGNORE_CAPITALIZATION},
                 {"ст1ол зАКАЗОВ", "заказов", ResponseErrors.CAPITALIZATION, Languages.RU, Options.IGNORE_DIGITS},
                 {"www.ниправильный.url ашипка нАЙДЕНА", "ошибка", ResponseErrors.UNKNOWN_WORD, Languages.RU, Options.IGNORE_URLS,
                         Options.IGNORE_CAPITALIZATION},
-                {"bOOK", "book", ResponseErrors.CAPITALIZATION, Languages.EN},
-                {"order order lIST", "order", ResponseErrors.REPEATED_WORD, Languages.RU, Options.IGNORE_CAPITALIZATION, Options.FIND_REPEATED_WORDS},
-                {"www.randam.url solid solid approach", "solid", ResponseErrors.REPEATED_WORD, Languages.EN, Options.IGNORE_URLS, Options.FIND_REPEATED_WORDS}};
+                {"bOOk", "book", ResponseErrors.CAPITALIZATION, Languages.EN, Options.IGNORE_URLS},
+                {"seLFIsh", "selfish", ResponseErrors.CAPITALIZATION, Languages.EN, Options.IGNORE_DIGITS},
+                {"order order lIST", "order", ResponseErrors.REPEATED_WORD, Languages.EN, Options.FIND_REPEATED_WORDS, Options.IGNORE_CAPITALIZATION, },
+                {"solid solid approach www.randam.url ", "solid", ResponseErrors.REPEATED_WORD, Languages.EN, Options.IGNORE_URLS, Options.FIND_REPEATED_WORDS}
+        };
     }
+
+
+
+
 }
 
-//IGNORE_DIGITS	2	Пропускать слова с цифрами, например, "авп17х4534".
+//        IGNORE_DIGITS	2	Пропускать слова с цифрами, например, "авп17х4534".
 //        IGNORE_URLS	4	Пропускать интернет-адреса, почтовые адреса и имена файлов.
-//        FIND_REPEA_WORDS	8	Подсвечивать повторы слов, идущие подряд. Например, "я полетел на на Кипр".
+//        FIND_REPEАTED_WORDS	8	Подсвечивать повторы слов, идущие подряд. Например, "я полетел на на Кипр".
 //        IGNORE_CAPITALIZATION	512
 
 

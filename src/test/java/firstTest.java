@@ -1,6 +1,8 @@
 import entities.RequestOptions.*;
 import entities.ResponseErrors;
 import entities.SpellerResponseDto;
+import org.hamcrest.Matchers;
+import org.hamcrest.collection.IsArrayWithSize;
 import org.testng.annotations.Test;
 import service.SpellerAssertions;
 import service.SpellerService;
@@ -8,6 +10,8 @@ import service.SpellerService;
 import java.util.HashMap;
 
 import static entities.RequestOptions.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 public class firstTest {
 
@@ -49,10 +53,24 @@ public class firstTest {
                 .verifySingleCorrectLine();
     }
 
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "incorrectTextIgnored")
+    public void incorrectTextShouldBeIngnoredTest(String incorrectText, Languages language, Options... options) {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put(PARAM_LANG, language.toString());
+        int optionSum = 0;
+        for (int i = 0; i < options.length; i++) {
+            optionSum += options[i].getCode();
+        }
+        params.put(PARAM_OPTIONS, optionSum);
+        SpellerResponseDto[] response = new SpellerService(incorrectText).getWithParams(params).getBody().as(SpellerResponseDto[].class);
+        new SpellerAssertions(response)
+                .verifySingleCorrectLine();
+    }
+
     @Test(dataProviderClass = DataProviders.class, dataProvider = "incorrectTextWithOptions")
     public void textWithOptionsShouldReturnErrorTest(String incorrectText, String correctText, ResponseErrors error, Languages language, Options... options) {
         HashMap<String, Object> params = new HashMap<>();
-        params.put(PARAM_LANG, language);
+        params.put(PARAM_LANG, language.toString());
         int optionSum = 0;
         for (int i = 0; i < options.length; i++) {
             optionSum += options[i].getCode();
@@ -62,6 +80,9 @@ public class firstTest {
         new SpellerAssertions(response)
                 .verifySingleIncorrectLine(correctText, error.getCode());
     }
+
+
+
 }
 
 
