@@ -11,7 +11,7 @@ import java.util.HashMap;
 import static entities.RequestOptions.PARAM_LANG;
 import static entities.RequestOptions.PARAM_OPTIONS;
 
-public class firstTest {
+public class SingleLineTests {
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "plain Russian correct text")
     public void correctRussianTextWithNoOptionsShouldNotReturnErrorTest(String text) {
