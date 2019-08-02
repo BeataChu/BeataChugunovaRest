@@ -17,7 +17,7 @@ public class RequestOptions {
             this.languageCode = lang;
         }
 
-        public String toString(){
+        public String toString() {
             return languageCode;
         }
     }

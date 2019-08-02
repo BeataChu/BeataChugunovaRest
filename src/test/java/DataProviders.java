@@ -60,23 +60,16 @@ public class DataProviders {
         return new Object[][]{
                 {"кНИЛА", "книга", ResponseErrors.UNKNOWN_WORD, Languages.RU, Options.IGNORE_CAPITALIZATION},
                 {"ст1ол зАКАЗОВ", "заказов", ResponseErrors.CAPITALIZATION, Languages.RU, Options.IGNORE_DIGITS},
-                {"www.ниправильный.url ашипка нАЙДЕНА", "ошибка", ResponseErrors.UNKNOWN_WORD, Languages.RU, Options.IGNORE_URLS,
-                        Options.IGNORE_CAPITALIZATION},
+                {"www.ниправильный.url ашипка нАЙДЕНА", "ошибка", ResponseErrors.UNKNOWN_WORD, Languages.RU,
+                        Options.IGNORE_URLS, Options.IGNORE_CAPITALIZATION},
                 {"bOOk", "book", ResponseErrors.CAPITALIZATION, Languages.EN, Options.IGNORE_URLS},
                 {"seLFIsh", "selfish", ResponseErrors.CAPITALIZATION, Languages.EN, Options.IGNORE_DIGITS},
-                {"order order lIST", "order", ResponseErrors.REPEATED_WORD, Languages.EN, Options.FIND_REPEATED_WORDS, Options.IGNORE_CAPITALIZATION, },
-                {"solid solid approach www.randam.url ", "solid", ResponseErrors.REPEATED_WORD, Languages.EN, Options.IGNORE_URLS, Options.FIND_REPEATED_WORDS}
+                {"order order lIST", "order", ResponseErrors.REPEATED_WORD, Languages.EN,
+                        Options.FIND_REPEATED_WORDS, Options.IGNORE_CAPITALIZATION,},
+                {"solid solid approach www.randam.url ", "solid", ResponseErrors.REPEATED_WORD, Languages.EN,
+                        Options.IGNORE_URLS, Options.FIND_REPEATED_WORDS}
         };
     }
-
-
-
-
 }
-
-//        IGNORE_DIGITS	2	Пропускать слова с цифрами, например, "авп17х4534".
-//        IGNORE_URLS	4	Пропускать интернет-адреса, почтовые адреса и имена файлов.
-//        FIND_REPEАTED_WORDS	8	Подсвечивать повторы слов, идущие подряд. Например, "я полетел на на Кипр".
-//        IGNORE_CAPITALIZATION	512
 
 
