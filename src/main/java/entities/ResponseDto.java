@@ -1,15 +1,13 @@
 package entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.experimental.Accessors;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Builder
+@Getter
 @Accessors(chain = true)
-public class SpellerResponseDto {
+public class ResponseDto {
     private int code;
     private int pos;
     private int row;
@@ -17,5 +15,4 @@ public class SpellerResponseDto {
     private int len;
     private String word;
     private String[] s;
-
 }

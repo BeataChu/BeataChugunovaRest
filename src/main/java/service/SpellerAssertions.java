@@ -1,30 +1,31 @@
 package service;
 
-import entities.SpellerResponseDto;
-
-import java.util.Arrays;
+import entities.ResponseDto;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.hasItemInArray;
 import static org.hamcrest.collection.IsArrayWithSize.arrayWithSize;
 
 public class SpellerAssertions {
-    private SpellerResponseDto[] response;
 
-    public SpellerAssertions(SpellerResponseDto[] response) {
-        this.response = response;
+    public static void verifySingleCorrectLine(ResponseDto[] actualResponse) {
+        assertThat(actualResponse, arrayWithSize(0));
     }
 
-    public void verifySingleIncorrectLine(String correctLine, int errorCode) {
-        assertThat(response, arrayWithSize(greaterThan(0)));
-        for (SpellerResponseDto dto : response) {
-            assert (Arrays.asList(dto.getS()).contains(correctLine));
-            assertThat(dto.getCode(), equalTo(errorCode));
+    public static void verifySingleIncorrectLine(ResponseDto[] actualResponse, ResponseDto[] expectedResponse) {
+        assertThat(actualResponse.length, equalTo(expectedResponse.length));
+        for (int i = 0; i < actualResponse.length; i++) {
+            assertThat(actualResponse[i].getCode(), equalTo(expectedResponse[i].getCode()));
+            String expectedSpelling = expectedResponse[i].getS()[0];
+            assertThat(actualResponse[i].getS(), hasItemInArray(expectedSpelling));
         }
     }
 
-    public void verifySingleCorrectLine() {
-        assertThat(response, arrayWithSize(0));
+    public static void verifyMultipleIncorrectLine(ResponseDto[][] actualResponse, ResponseDto[][] expectedResponse) {
+        assertThat(actualResponse.length, equalTo(expectedResponse.length));
+        for (int i = 0; i < actualResponse.length; i++) {
+            verifySingleIncorrectLine(actualResponse[i], expectedResponse[i]);
+        }
     }
 }
