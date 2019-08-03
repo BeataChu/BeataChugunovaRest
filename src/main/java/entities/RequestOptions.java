@@ -2,6 +2,10 @@ package entities;
 
 public class RequestOptions {
 
+    //todo вот эту прелесть нужно бы попилить на две части:
+    //https://speller.yandex.net/services/spellservice.json
+    //checkText
+    //todo а куда пропал checkTexts??
     public static final String SPELLER_URI = "https://speller.yandex.net/services/spellservice.json/checkText";
     public static final String PARAM_TEXT = "text";
     public static final String PARAM_OPTIONS = "options";

@@ -13,6 +13,7 @@ import static entities.RequestOptions.PARAM_OPTIONS;
 
 public class SingleLineTests {
 
+    //todo я не вижу смясла в таком разеденеии, по языкам. Но это вопрос тестовому дизайну.
     @Test(dataProviderClass = DataProviders.class, dataProvider = "plain Russian correct text")
     public void correctRussianTextWithNoOptionsShouldNotReturnErrorTest(String text) {
 
@@ -33,8 +34,17 @@ public class SingleLineTests {
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "plain incorrect text")
     public void singlePlainRussianTextTest(String incorrectText, String correctText) {
+        //todo .getWithNoParams().getBody()
+        //                .as(SpellerResponseDto[].class) - вот такая запись тоже усложняет тест,
+        // написание в том числе, НО это тоже вариант, так что можешь не прятать в метода, так пишут
         SpellerResponseDto[] response = new SpellerService(incorrectText).getWithNoParams().getBody()
                 .as(SpellerResponseDto[].class);
+//todo а вот число из эстетических соображений, вот пример. Ну это так out of scope
+	   /* SpellerResponseDto[] response5 = new SpellerService(incorrectText)
+			    .getWithNoParams()
+			    .getBody()
+			    .as(SpellerResponseDto[].class);*/
+
 
         new SpellerAssertions(response)
                 .verifySingleIncorrectLine(correctText, 1);
@@ -45,6 +55,8 @@ public class SingleLineTests {
         HashMap<String, Object> params = new HashMap<>();
         params.put(PARAM_LANG, language);
         int optionSum = 0;
+        //todo НЕ используй в тестах if/for и подобное. Это усложняет читабельность теста. Тест ДОЛЖЕН быть читабельным.
+        //а то мне вот, например,  сильно подумать надо, чтобв разобраться, что тут происходит
         for (int i = 0; i < options.length; i++) {
             optionSum += options[i].getCode();
         }
